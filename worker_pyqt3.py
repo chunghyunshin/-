@@ -16,17 +16,13 @@ sheet1 = wb.get_sheet_by_name("04_month")
 
 from work_person import Person
 
-
+final_who = Person()
 #%%
 class MyApp(QWidget,Person):
-
-    def __init__(self, name):
-        super.__init__()
-        Person.__init__(self, name)
+    def __init__(self):
+        super().__init__()
         self.initUI()
         
-        
-
     def initUI(self):
         
         self.lbl = QLabel(self)
@@ -43,7 +39,7 @@ class MyApp(QWidget,Person):
         #layout.addWidget(self.canvas)
 
         cb = QComboBox(self)
-        for i in self.final_who.set_who:
+        for i in final_who.set_who:
             cb.addItem(i)
         cb.move(50, 50)
 
@@ -59,8 +55,7 @@ class MyApp(QWidget,Person):
         self.show()
 
     def onActivated(self, text):
-        
-        self.lbl.setText(self.final_who.ratio_cat())
+        self.lbl.setText(final_who.ratio_Cat(text))
         self.lbl.adjustSize()
 
 
@@ -68,9 +63,8 @@ class MyApp(QWidget,Person):
     #def onComboBoxChanged(self, text):
         #final_who.chart_pie(text)
 
-    def imageload(self):
-           
-        pixmap = QPixmap(self.final_who.chart_pie())
+    def imageload(self,text):
+        pixmap = QPixmap(final_who.chart_pie(text))
         self.lbl_img.setPixmap(pixmap)
         self.lbl_img.adjustSize()
 
